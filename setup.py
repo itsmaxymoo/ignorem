@@ -1,21 +1,22 @@
 from setuptools import setup
+import ignorem
 
 with open("README.md", "r") as fh:
 	long_description = fh.read()
 
 setup(
-	name='ignorem',
-	version='0.1',
+	name=ignorem.PROGRAM_NAME,
+	version=ignorem.PROGRAM_VERSION,
 	packages=['ignorem'],
-	url='https://github.com/itsmaxymoo/ignorem',
+	url=ignorem.PROGRAM_URL,
 	license='Mozilla Public License version 2.0',
-	author='Max Loiacono',
+	author=ignorem.PROGRAM_AUTHOR,
 	author_email='',
-	description='Easily manage .gitignore files.',
+	description=ignorem.PROGRAM_DESCRIPTION,
 	long_description=long_description,
 	long_description_content_type="text/markdown",
 	entry_points={
-		'console_scripts': ['ignorem=ignorem:main']
+		'console_scripts': ['ignorem=ignorem:_main']
 	},
 	classifiers=[
 		"Programming Language :: Python :: 3",

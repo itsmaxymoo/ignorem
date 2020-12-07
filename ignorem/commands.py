@@ -1,4 +1,6 @@
 import ignorem
+from ignorem.gitignore import GitIgnore, GitIgnoreManager
+
 
 def _command_help():
 	# Command list tuple format : name, description, requires gitignore list?
@@ -37,7 +39,7 @@ Commands:
 		ignorem.PROGRAM_CMD,
 		command_text
 	)
-	print (help_text)
+	print(help_text)
 
 
 def _command_add(ignores):
@@ -45,7 +47,14 @@ def _command_add(ignores):
 
 
 def _command_list():
-	print("LIST")
+	g = GitIgnoreManager.read()
+	installed = g.get_installed()
+	if len(installed) > 0:
+		print("Installed gitignores: " + ", ".join(installed))
+	else:
+		print("No ignorem installed gitignores at: " + ignorem.gitignore.GITIGNORE_PATH)
+		if g.is_has_loose_gitignore():
+			print("(gitignore NOT empty!)")
 
 
 def _command_list_all():

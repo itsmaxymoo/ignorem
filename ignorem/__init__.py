@@ -1,4 +1,5 @@
 import sys
+import os
 from ignorem import commands
 
 PROGRAM_NAME = "ignorem"
@@ -8,6 +9,7 @@ PROGRAM_AUTHOR = "Max Loiacono"
 PROGRAM_DESCRIPTION = "Easily manage .gitignore files."
 PROGRAM_URL = "https://github.com/itsmaxymoo/ignorem"
 PROGRAM_CMD = "ignorem"
+
 
 def _main():
 	# Command line args

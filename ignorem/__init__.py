@@ -32,8 +32,8 @@ def _main():
 			commands._command_remove(args)
 		elif cmd == "list":
 			commands._command_list()
-		elif cmd == "list-all":
-			commands._command_list_all()
+		elif cmd == "query":
+			commands._command_query()
 		elif cmd == "help":
 			commands._command_help()
 		else:

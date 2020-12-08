@@ -20,7 +20,7 @@ class GitIgnore:
 
 	def parse(self, text):
 		# Get the list of ignorem installed gitignores
-		installed = re.search(rf"(?<={GitIgnore._HEADER_INSTALLED})([A-Za-z0-1_ ,]+)", text)
+		installed = re.search(rf"(?<={GitIgnore._HEADER_INSTALLED})([A-Za-z0-1_ ,+-]+)", text)
 		if installed:
 			installed = re.split(r"[ ,]+", installed.group(0))
 		else:

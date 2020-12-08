@@ -7,7 +7,7 @@ def _command_help():
 	commands = [
 		("help", "Displays this text.", False),
 		("list", "Lists gitignores enabled in the .gitignore file.", False),
-		("list-all", "Lists all available gitignores.", False),
+		("query", "Query all available gitignores.", False),
 		("add", "Adds or updates the specificed gitignores to the .gitignore file.", True),
 		("remove", "Removes the specificed gitignores from the .gitignore file.", True)
 	]
@@ -57,8 +57,8 @@ def _command_list():
 			print("(gitignore NOT empty!)")
 
 
-def _command_list_all():
-	print("LIST AVAILABLE")
+def _command_query():
+	print("QUERY")
 
 
 def _command_remove(ignores):

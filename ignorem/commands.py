@@ -1,5 +1,6 @@
 import ignorem
 from ignorem.gitignore import GitIgnore, GitIgnoreManager
+from ignorem import sources
 
 
 def _command_help():
@@ -58,7 +59,9 @@ def _command_list():
 
 
 def _command_query():
-	print("QUERY")
+	available = sources.query()
+	for s in available:
+		print(s)
 
 
 def _command_remove(ignores):

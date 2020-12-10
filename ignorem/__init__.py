@@ -27,13 +27,21 @@ def _main():
 		args = [] if num_args == 2 else sys.argv[2:]
 
 		if cmd == "add":
-			commands._command_add(args)
+			if args:
+				commands._command_add(args)
+			else:
+				print("Command \"add\" requires additional parameters.")
 		elif cmd == "remove":
-			commands._command_remove(args)
+			if args:
+				commands._command_remove(args)
+			else:
+				print("Command \"remove\" requires additional parameters.")
 		elif cmd == "list":
 			commands._command_list()
 		elif cmd == "query":
 			commands._command_query()
+		elif cmd == "update":
+			commands._command_update()
 		elif cmd == "help":
 			commands._command_help()
 		else:

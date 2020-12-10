@@ -10,7 +10,8 @@ def _command_help():
 		("list", "Lists gitignores enabled in the .gitignore file.", False),
 		("query", "Query all available gitignores.", False),
 		("add", "Adds or updates the specificed gitignores to the .gitignore file.", True),
-		("remove", "Removes the specificed gitignores from the .gitignore file.", True)
+		("remove", "Removes the specificed gitignores from the .gitignore file.", True),
+		("update", "Updates all installed gitignores.", False)
 	]
 	command_text = ""
 
@@ -24,7 +25,7 @@ def _command_help():
 {5}
 
 Usage:
-\t{6} {{ help | list | list-all | add | remove }} [gitignores]...
+\t{6} {{ help | list | list-all | add | remove | update }} [gitignores]...
 
 Commands:
 {7}
@@ -44,7 +45,16 @@ Commands:
 
 
 def _command_add(ignores):
-	print("ADD")
+	g = GitIgnoreManager.read()
+
+	for i in ignores:
+		if i in sources.query():
+			g.add(i)
+			print("Installed \"" + i + "\".")
+		else:
+			print("ERROR: No known gitignore: \"" + i + "\"!")
+
+	GitIgnoreManager.write(g)
 
 
 def _command_list():
@@ -65,4 +75,21 @@ def _command_query():
 
 
 def _command_remove(ignores):
-	print("REMOVE")
+	g = GitIgnoreManager.read()
+
+	for i in ignores:
+		if g.remove(i):
+			print("Removed gitignore \"" + i + "\".")
+		else:
+			print("ERROR: Gitignore \"" + i + "\" not installed!")
+
+	GitIgnoreManager.write(g)
+
+
+def _command_update():
+	g = GitIgnoreManager.read()
+	installed = g.get_installed()
+
+	GitIgnoreManager.write(g)
+
+	print("Updated gitignores.")

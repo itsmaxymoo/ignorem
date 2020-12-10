@@ -45,3 +45,13 @@ def _get_all_sources():
 def query():
 	_get_all_sources()
 	return sorted(list(_sources.keys()))
+
+
+def fetch_ignore(name):
+	_get_all_sources()
+
+	if name not in _sources:
+		return "# ERROR: gitignore \"" + name + "\" not found!"
+
+	with urlopen(_sources[name]) as remote:
+		return remote.read().decode("UTF-8")

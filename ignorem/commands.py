@@ -44,26 +44,13 @@ Commands:
 	print(help_text)
 
 
-def _command_add(ignores):
-	g = GitIgnoreManager.read()
-
-	for i in ignores:
-		if i in sources.query():
-			g.add(i)
-			print("Installed \"" + i + "\".")
-		else:
-			print("ERROR: No known gitignore: \"" + i + "\"!")
-
-	GitIgnoreManager.write(g)
-
-
 def _command_list():
 	g = GitIgnoreManager.read()
 	installed = g.get_installed()
 	if len(installed) > 0:
-		print("Installed gitignores: " + ", ".join(installed))
+		print("Installed gitignore(s): " + ", ".join(installed))
 	else:
-		print("No ignorem installed gitignores at: " + ignorem.gitignore.GITIGNORE_PATH)
+		print("No ignorem installed gitignore(s) at: " + ignorem.gitignore.GITIGNORE_PATH)
 		if g.is_has_loose_gitignore():
 			print("(gitignore NOT empty!)")
 
@@ -74,22 +61,39 @@ def _command_query():
 		print(s)
 
 
+def _command_add(ignores):
+	g = GitIgnoreManager.read()
+
+	for i in ignores:
+		if i in sources.query():
+			g.add(i)
+		else:
+			ignores.remove(i)
+			print("ERROR: No known gitignore: \"" + i + "\"!")
+
+	if ignores:
+		print("Installed gitignore(s): " + ", ".join(ignores))
+
+	GitIgnoreManager.write(g)
+
+
 def _command_remove(ignores):
 	g = GitIgnoreManager.read()
 
 	for i in ignores:
-		if g.remove(i):
-			print("Removed gitignore \"" + i + "\".")
-		else:
+		if not g.remove(i):
+			ignores.remove(i)
 			print("ERROR: Gitignore \"" + i + "\" not installed!")
+
+	if ignores:
+		print("Removed gitignore(s): " + ", ".join(ignores))
 
 	GitIgnoreManager.write(g)
 
 
 def _command_update():
 	g = GitIgnoreManager.read()
-	installed = g.get_installed()
 
 	GitIgnoreManager.write(g)
 
-	print("Updated gitignores.")
+	print("Updated gitignore(s).")

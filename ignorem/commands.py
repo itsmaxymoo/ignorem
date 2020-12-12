@@ -16,7 +16,7 @@ def _command_help():
 	command_text = ""
 
 	for c in commands:
-		command_text += "\t" + c[0] + ("\t\t" if len(c[0]) < 8 else "\t") + ("*" if c[2] else "") + c[1] +"\n"
+		command_text += "\t" + c[0] + ("\t\t" if len(c[0]) < 4 else "\t") + ("*" if c[2] else "") + c[1] +"\n"
 	command_text = command_text.rstrip()
 
 	help_text = """{0} ({1}) version {2} by {3}
@@ -41,7 +41,7 @@ Commands:
 		ignorem.PROGRAM_CMD,
 		command_text
 	)
-	print(help_text)
+	print(help_text.expandtabs(4))
 
 
 def _command_list():

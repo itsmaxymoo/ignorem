@@ -4,7 +4,7 @@ from ignorem import commands
 
 PROGRAM_NAME = "ignorem"
 PROGRAM_NAME_FULL = "gitignore manager"
-PROGRAM_VERSION = "1.0"
+PROGRAM_VERSION = "1.0.1"
 PROGRAM_AUTHOR = "Max Loiacono"
 PROGRAM_DESCRIPTION = "Easily manage .gitignore files."
 PROGRAM_URL = "https://github.com/itsmaxymoo/ignorem"
@@ -42,7 +42,7 @@ def _main():
 			commands._command_query()
 		elif cmd == "update":
 			commands._command_update()
-		elif cmd == "help":
+		elif cmd in ["help", "-h", "--help"]:
 			commands._command_help()
 		else:
 			print("Command \"" + cmd + "\" not found.")

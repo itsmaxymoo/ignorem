@@ -1,6 +1,7 @@
 import ignorem
 from ignorem.gitignore import GitIgnore, GitIgnoreManager
 from ignorem import sources
+from ignorem import config
 
 
 def _command_help():
@@ -11,13 +12,16 @@ def _command_help():
 		("query", "Query all available gitignores.", False),
 		("add", "Adds or updates the specificed gitignores to the .gitignore file.", True),
 		("remove", "Removes the specificed gitignores from the .gitignore file.", True),
-		("update", "Updates all installed gitignores.", False)
+		("update", "Updates all installed gitignores.", False),
+		("repo-list", "Lists all enabled repositories.", False),
+		("repo-add", "Adds the specified repo.", True),
+		("repo-del", "Removes the specified repo.", True)
 	]
 	command_text = ""
 
 	for c in commands:
-		command_text += "\t" + c[0] + ("\t\t" if len(c[0]) < 4 else "\t") + ("*" if c[2] else "") + c[1] +"\n"
-	command_text = command_text.rstrip()
+		command_text += "    " + c[0] + "\t" + ("*" if c[2] else "") + c[1] + "\n"
+	command_text = command_text.rstrip().expandtabs(14)
 
 	help_text = """{0} ({1}) version {2} by {3}
 
@@ -29,7 +33,7 @@ Usage:
 
 Commands:
 {7}
-* = Requires gitignore argument(s)"""
+* = Requires additional argument(s)"""
 
 	help_text = help_text.format(
 		ignorem.PROGRAM_NAME,
@@ -97,3 +101,22 @@ def _command_update():
 	GitIgnoreManager.write(g)
 
 	print("Updated gitignore(s).")
+
+
+def _command_repo_list():
+	print("Enabled repositories:")
+
+	for r in sources._REPO_LIST + sources.get_external_repos():
+		print(r)
+
+
+def _command_repo_add(urls):
+	sources.add_source(urls[0])
+	print("Added repository: " + urls[0])
+
+
+def _command_repo_remove(urls):
+	if sources.remove_source(urls[0]):
+		print("Removed repository: " + urls[0])
+	else:
+		print("Could not remove: " + urls[0])

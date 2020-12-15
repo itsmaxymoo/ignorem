@@ -1,10 +1,9 @@
 import sys
-import os
 from ignorem import commands
 
 PROGRAM_NAME = "ignorem"
 PROGRAM_NAME_FULL = "gitignore manager"
-PROGRAM_VERSION = "1.0"
+PROGRAM_VERSION = "1.1"
 PROGRAM_AUTHOR = "Max Loiacono"
 PROGRAM_DESCRIPTION = "Easily manage .gitignore files."
 PROGRAM_URL = "https://github.com/itsmaxymoo/ignorem"
@@ -42,6 +41,12 @@ def _main():
 			commands._command_query()
 		elif cmd == "update":
 			commands._command_update()
+		elif cmd == "repo-list":
+			commands._command_repo_list()
+		elif cmd == "repo-add":
+			commands._command_repo_add(args)
+		elif cmd == "repo-del":
+			commands._command_repo_remove(args)
 		elif cmd == "help":
 			commands._command_help()
 		else:

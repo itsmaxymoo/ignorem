@@ -47,7 +47,7 @@ def _main():
 			commands._command_repo_add(args)
 		elif cmd == "repo-del":
 			commands._command_repo_remove(args)
-		elif cmd == "help":
+		elif cmd in ["help", "-h", "--help"]:
 			commands._command_help()
 		else:
 			print("Command \"" + cmd + "\" not found.")

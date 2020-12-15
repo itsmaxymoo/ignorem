@@ -18,12 +18,15 @@ Run `ignorem` from the command line, in the directory that contains the `.gitign
 
 | Command | Description | Additional arguments |
 | --- | --- | --- |
-| help | Shows info/help text.
-| list | Lists gitignores installed in `.gitignore`.
-| query | Lists all available pre-made gitignores.
+| help | Shows info/help text. | |
+| list | Lists gitignores installed in `.gitignore`. | |
+| query | Lists all available pre-made gitignores. | |
 | add | Add the specified pre-made gitignore(s) to `.gitignore`. | Gitignore(s) to add |
 | remove | Remove the specified pre-made gitignore(s) from `.gitignore`. | Gitignore(s) to remove |
-| update | Update all pre-made gitignores installed to `.gitignore`.
+| update | Update all pre-made gitignores installed to `.gitignore`. | |
+| repo-list | Lists all enabled repositories. | |
+| repo-add | Adds the specified repository. | Repository URL |
+| repo-del | Removes the specified repository. Cannot remove default repository. | Repository URL |
 
 ## Examples
 
@@ -61,3 +64,24 @@ An empty gitignore is below to demonstrate this:
 
 # END ignorem auto-gen
 ```
+
+## Repositories
+
+A repository is a file on a web server with instructions for downloading gitignores.
+A repository must be encoded as UTF-8, and follow the format:
+
+```
+<id> <url>
+...
+```
+
+Where *id* is the name of the gitignore to be used in ignorem, and
+*url* is the url to the raw gitignore file.
+
+For example:
+```
+c++ https://raw.githubusercontent.com/github/gitignore/master/C++.gitignore
+...
+```
+
+For a real example, see the [default repository](SOURCES).

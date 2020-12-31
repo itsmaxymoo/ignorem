@@ -48,6 +48,10 @@ Commands:
 	print(help_text.expandtabs(4))
 
 
+def _command_version():
+	print(ignorem.PROGRAM_VERSION)
+
+
 def _command_list():
 	g = GitIgnoreManager.read()
 	installed = g.get_installed()

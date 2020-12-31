@@ -3,7 +3,7 @@ from ignorem import commands
 
 PROGRAM_NAME = "ignorem"
 PROGRAM_NAME_FULL = "gitignore manager"
-PROGRAM_VERSION = "1.1"
+PROGRAM_VERSION = "1.1.1"
 PROGRAM_AUTHOR = "Max Loiacono"
 PROGRAM_DESCRIPTION = "Easily manage .gitignore files."
 PROGRAM_URL = "https://github.com/itsmaxymoo/ignorem"
@@ -47,6 +47,8 @@ def _main():
 			commands._command_repo_add(args)
 		elif cmd == "repo-del":
 			commands._command_repo_remove(args)
+		elif cmd == "--version":
+			commands._command_version()
 		elif cmd in ["help", "-h", "--help"]:
 			commands._command_help()
 		else:

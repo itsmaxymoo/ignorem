@@ -9,7 +9,7 @@ setup(
 	version=ignorem.PROGRAM_VERSION,
 	packages=['ignorem'],
 	url=ignorem.PROGRAM_URL,
-	license='Apache License version 2.0',
+	license='MIT License',
 	author=ignorem.PROGRAM_AUTHOR,
 	author_email='',
 	description=ignorem.PROGRAM_DESCRIPTION,
@@ -20,11 +20,11 @@ setup(
 	},
 	classifiers=[
 		"Programming Language :: Python :: 3",
-		"License :: OSI Approved :: Apache Software License",
+		"License :: OSI Approved :: MIT License",
 		"Operating System :: OS Independent",
 	],
 	install_requires=[
-		"simplecfg < 2.0"
+		"simplecfg < 2.0.0"
 	],
 	python_requires='>=3.6'
 )

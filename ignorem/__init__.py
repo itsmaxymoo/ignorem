@@ -3,7 +3,7 @@ from ignorem import commands
 
 PROGRAM_NAME = "ignorem"
 PROGRAM_NAME_FULL = "gitignore manager"
-PROGRAM_VERSION = "1.1.2"
+PROGRAM_VERSION = "1.1.3"
 PROGRAM_AUTHOR = "Max Loiacono"
 PROGRAM_DESCRIPTION = "Easily manage .gitignore files."
 PROGRAM_URL = "https://github.com/itsmaxymoo/ignorem"
